@@ -1,0 +1,142 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(171, 190, 204);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    
+    color: #34495e;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+h1:hover {
+    color: #2980b9;
+    transform: scale(1.1);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#game {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+    position: relative;
+   
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #333;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: #d5d1d196 0px 22px 70px 4px;
+}
+
+.cell:hover {
+    background-color: #dff0d8;
+    transform: scale(1.1);
+}
+
+.cell.selected {
+    background-color: #e0e0e0;
+    animation: pulse 0.5s ease;
+}
+
+#statusMessage {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#statusMessage:hover {
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+#restartButton {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #4CAF50; /* Green color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#restartButton:hover {
+    background-color: #45a049; /* Darker shade of green */
+    transform: scale(1.05);
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cell.x::before,
+.cell.o::before {
+    content: attr(data-content);
+    font-size: 3rem;
+    font-weight: bold;
+    display: inline-block;
+    animation: textFadeIn 0.5s ease-in-out;
+    color: #2980b9;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.winning-line {
+    position: absolute;
+    width: 300px;
+    height: 5px;
+    background-color: #ff4757;
+    transform-origin: center;
+    display: none;
+}
+
+.winning-line.show {
+    display: block;
+}
